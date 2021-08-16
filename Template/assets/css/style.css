@@ -1,0 +1,111 @@
+html {
+    scroll-behavior: smooth;
+    color: white;
+}
+body{
+    background-color: #1e2126;
+    color: white;
+}
+#chat_list{
+    background-color: #212529;
+    height: 96vh;
+   
+}
+#chat_list::-webkit-scrollbar {
+  display: none;
+}
+#chat{
+    background-color: #1e2126;
+    height: auto;
+}
+.card{
+    background-color: #212529;
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    animation-name: focusing_card_border_out;
+    animation-duration: 0.5s;
+ 
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+#footer:hover > h6:nth-child(2) a {
+    color:  var(--bs-blue);
+    animation-name: focusing_card;
+    animation-duration: 0.5s;
+}
+#footer > h6:nth-child(2) a {
+  color: white;
+  animation-name: focusing_card_out;
+  animation-duration: 0.5s;
+}
+#footer > h6:nth-child(1) span{
+    color: white;
+    animation-name: focusing_card_out;
+    animation-duration: 0.5s;
+}
+ #footer:hover > h6:nth-child(1) span{
+    color:var(--bs-blue);
+    animation-name: focusing_card;
+    animation-duration: 0.5s;
+}
+.card:hover{
+    animation-name: focusing_card_border;
+    animation-duration: 0.5s;
+    border:  1px solid var(--bs-blue);
+}
+@keyframes focusing_card_border {
+    from {border: 1px solid white;}
+    to {border:  1px solid var(--bs-blue);}
+  }
+  @keyframes focusing_card_border_out {
+    from {border:  1px solid var(--bs-blue);}
+    to {border: 1px solid white;}
+   
+  }
+@keyframes focusing_card {
+    from {color: white;}
+    to {color:  var(--bs-blue);}
+  }
+  @keyframes focusing_card_out {
+    from {color:  var(--bs-blue);}
+    to {color:  white;}
+  }
+.card:hover .card-title{
+    color:var(--bs-blue);
+    animation-name: focusing_card;
+    animation-duration: 0.5s;
+}
+.card .card-title{
+    
+    animation-name: focusing_card_out;
+    animation-duration: 0.5s;
+}
+/*
+::-webkit-scrollbar {
+    width: 3px;
+    height: 5px;
+  }
+  
+
+  ::-webkit-scrollbar-track {
+    opacity: .25;
+  }
+   
+
+  ::-webkit-scrollbar-thumb {
+    background:  var(--bs-blue); 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background:  var(--bs-blue); 
+  }
+  */
+  #chat_body {
+    height: 83vh;
+  }
+  hr {
+    color:  var(--bs-blue); 
+  }
