@@ -3,6 +3,7 @@ html {
     color: white;
 }
 body{
+  margin: 0;
     background-color: #1e2126;
     color: white;
 }
@@ -131,9 +132,6 @@ small {
 }
 #chat_header {
 border-bottom :  1px solid  white;
-
-
-
 }
 #chat_header > h4 {
   color: var(--bs-blue);

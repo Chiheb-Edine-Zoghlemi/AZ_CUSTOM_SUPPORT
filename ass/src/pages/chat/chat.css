@@ -1,0 +1,114 @@
+#chat{
+    background-color: #1e2126;   
+    color: #fff;
+    height: 100vh;
+}
+
+#chat_header > h4 {
+      
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+}
+#chat_header > h4:hover {
+      color: #0d6efd;
+      animation-name: focusing_card;
+      animation-duration: 0.5s;
+}
+.form-control:focus {
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 25px;
+      outline: 0;
+      box-shadow: none;
+}
+.logout{
+      font-size: 1.3em;
+      cursor: pointer;
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+} 
+.logout:hover{
+      color: #0d6efd;
+      animation-name: focusing_card;
+      animation-duration: 0.5s;
+} 
+.form-control:focus{
+      border-color: #0d6efd ;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+.btn-outline-primary {
+      color: #0d6efd;
+      border-color: #fff;
+      border-radius: 0 25px 25px 0;
+}
+.form-control:focus  .btn-outline-primary {
+      border-color: #0d6efd ;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+#chat_body {
+    height: 84vh;
+    width: 95%;
+}
+#chat_header{
+    height: 5vh;
+    width: 95%;
+    border-bottom :  1px solid  #0d6efd ;
+}
+
+#chat_footer{
+    width: 95%;
+}
+  
+#chat_body::-webkit-scrollbar {
+      width: 3px;
+      height: 5px;
+}
+    
+  
+#chat_body::-webkit-scrollbar-track {
+      opacity: .25;
+}
+     
+  
+#chat_body::-webkit-scrollbar-thumb {
+      background:  var(--bs-blue); 
+}
+  
+#chat_body::-webkit-scrollbar-thumb:hover {
+      background:  var(--bs-blue); 
+}
+#footer:hover > h6:nth-child(2)  {
+        color:  var(--bs-blue);
+        animation-name: focusing_card;
+        animation-duration: 0.5s;
+}
+#footer > h6:nth-child(2)  {
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+}
+#footer > h6:nth-child(1) span{
+        color: white;
+        animation-name: focusing_card_out;
+        animation-duration: 0.5s;
+}
+#footer:hover > h6:nth-child(1) span{
+        color:var(--bs-blue);
+        animation-name: focusing_card;
+        animation-duration: 0.5s;
+}
+@keyframes focusing_card {
+        from {color: white;}
+        to {color:  var(--bs-blue);}
+}
+@keyframes focusing_card_out {
+        from {color:  var(--bs-blue);}
+        to {color:  white;}
+}
+a{
+        text-decoration: none;
+        color: white;
+}
