@@ -1,14 +1,30 @@
 import React from 'react'
 import './chat.css'
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Message from './components/message';
 import Waitingmsg from './components/waitingmsg';
 import UserProfile from './components/user_info';
 import { useEffect } from 'react';
- const  ws = new WebSocket('ws://localhost:3500');
 const Chat = () => {
+  const socket = useRef(null);
+  function connect() {
+    socket.current = new WebSocket('ws://127.0.0.1:3500');
+   
+  }
+  function onOpen(e) {
+    console.log('socket ready state', socket.current.readyState);
+  }
+  function onMessage(e) {
+    const data = JSON.parse(e.data);
+    setMessages(Messages => [...Messages, data]);
+    setwaiting(waiting)
+  }
+  function onClose(e) {
+    socket.current.close()
+  }
  
+
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -33,17 +49,17 @@ const Chat = () => {
       history.push('/')
     }
   });
+  
   useEffect(() => {
-    ws.onmessage = e => {
-      const message = JSON.parse(e.data);
-      if(messageCount > 0) {
-        setwaiting(!waiting)
-      }
-     
-      setMessages(Messages => [...Messages, message]);
+    connect();
+    socket.current.onopen = onOpen;
+    socket.current.onmessage = onMessage;
+    socket.current.onclose = onClose;
+    return () => {
+      socket.current.close();
     };
-    
-  },[waiting,messageCount]);
+  }, []);
+ 
   
   const send_message = async (e) => {
     let time = new Date();
@@ -54,7 +70,7 @@ const Chat = () => {
     setnew_message('')
     setwaiting(!waiting)
     await sleep(3000)
-    ws.send(new_message);
+    socket.current.send( JSON.stringify(new_message));
     setMessageCount(messageCount+1)
     
   }

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import UserProfile from '../chat/components/user_info';
 import validator from 'validator'
 const Login = () => {
+    
     let history = useHistory();
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -16,18 +17,27 @@ const Login = () => {
     const [order, setorder] = useState("")
     const [open, setOpen] = useState(true);
     const logging =  async (e) => { 
+        let is_valid = true
         e.preventDefault();
         setOpen(!open)
         await sleep(2000)
-        if (!validator.isEmail(email) || !validator.isAlphanumeric(order)) {
+
+        if (!validator.isEmail(email)) {
+            is_valid= false; 
             $( "#email_feed_back" ).fadeIn("slow")
+            
+        }
+        if(!validator.isAlphanumeric(order)){
+            is_valid= false; 
             $( "#order_feed_back" ).fadeIn("slow")
-            setOpen(open)
-        }else {
+           
+        }
+        if(is_valid){
             UserProfile.setemail(email);
             UserProfile.setorder(order);
             history.push('/chat')
         }
+        setOpen(open)
         
         
         
