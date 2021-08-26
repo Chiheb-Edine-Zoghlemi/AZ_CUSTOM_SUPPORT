@@ -4,10 +4,11 @@ import  Chat from './pages/chat/components/chat'
 import  Chatlist from './pages/chat/components/chat_list'
 //import Notfound from './pages/404/notfound';
 import { useState } from 'react';
+
 function App() {
   const [Selected_chat, setSelected_chat] = useState(null)
-  //email:'hello.gmail.com',orderid:"55555",Messages:[]}
   const  [chats, setchats] = useState([])
+ 
   return (
   <Router>
         <Switch>
@@ -24,7 +25,7 @@ function App() {
           </span>
           <span className="d-flex justify-content-around align-self-cente  w-50" >
             {
-              Selected_chat !== null ?
+              Selected_chat !== null && chats.length > 0 ?
               <>
               <h6 className="align-self-center fading">Email : {chats[Selected_chat].email} </h6>
               <h6 className="align-self-center  fading">Order ID : {chats[Selected_chat].orderid} </h6>
@@ -43,7 +44,7 @@ function App() {
       </div>
         <div className="row">
         <Chatlist setSelected_chat={setSelected_chat} chats={chats} setchats={setchats} />
-        {Selected_chat != null ? <Chat chats={chats}  setchats={setchats} Selected_chat={Selected_chat}/> : 
+        {Selected_chat != null && chats.length > 0  ? <Chat chats={chats}  setchats={setchats} Selected_chat={Selected_chat}/> : 
         
         <div  className="col-9 fading">
         <div className="d-flex  h-100 justify-content-center align-items-center ">

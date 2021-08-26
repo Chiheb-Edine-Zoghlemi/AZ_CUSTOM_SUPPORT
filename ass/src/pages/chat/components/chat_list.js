@@ -47,6 +47,13 @@ const Chatlist = (props) =>
     }
     
 }
+const delete_chat = (index) => { 
+  let old_chat = props.chats
+  const new_list = [...old_chat.slice(0, index), ...old_chat.slice(index + 1)]
+  props.setchats(new_list)
+  
+
+}
     return (
       <>
         <div id="chat_list" className="col-3 overflow-auto">
@@ -57,11 +64,11 @@ const Chatlist = (props) =>
         </h5>
         {
         props.chats.map((c,index) => 
-          <div key={index} className="card  mt-3 mb-3 p-2 fading" onClick={() => {props.setSelected_chat(index)}}>
+          <div key={index} className="card  mt-3 mb-3 p-2 fading" >
           <div className="card-body">
-          
             <div className="d-flex justify-content-between ">
-              <h5  className="card-title text-capitalize"> Email :  {c.email}</h5>
+              <h5 onClick={() => {props.setSelected_chat(index)}}  className="card-title text-capitalize"> Email :  {c.email}</h5>
+              <p className="align-self-center close" onClick={()=>{delete_chat(index)}} ><i className="fas fa-trash-alt"></i></p>
             </div>
             <p className="card-text text-start text-truncate">Order ID : {c.orderid}</p>
           </div>

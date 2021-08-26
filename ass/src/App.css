@@ -275,3 +275,20 @@ a{
       font-size: small;
       display: none;
   }
+::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+  
+  
+::-webkit-scrollbar-track {
+      opacity: .25;
+    }
+  
+::-webkit-scrollbar-thumb {
+      background:  var(--bs-blue); 
+    }
+  
+::-webkit-scrollbar-thumb:hover {
+      background:  var(--bs-blue); 
+    }
