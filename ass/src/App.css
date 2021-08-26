@@ -1,0 +1,277 @@
+#chat{
+    background-color: #1e2126;   
+    color: #fff;
+    height: 100vh;
+}
+
+#chat_header > span > h4 {
+      
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+}
+#chat_header > span > h4:hover {
+      color: #0d6efd;
+      animation-name: focusing_card;
+      animation-duration: 0.5s;
+}
+.form-control:focus {
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 25px;
+      outline: 0;
+      box-shadow: none;
+}
+#chat_list{
+      border-right: 1px solid white;
+      height: 91vh;
+}
+.new_chat{
+      font-size: 1.5em;
+      cursor: pointer;
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+} 
+.new_chat:hover{
+      color: #0d6efd;
+      animation-name: focusing_card;
+      animation-duration: 0.5s;
+} 
+.form-control:focus{
+      border-color: #0d6efd ;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+.btn-outline-primary {
+      color: #0d6efd;
+      border-color: #fff;
+      border-radius: 0 25px 25px 0;
+}
+.form-control:focus  .btn-outline-primary {
+      border-color: #0d6efd ;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+#chat_body {
+    height: 84vh;
+    width: 100%;
+}
+#chat_header{
+    height: 5vh;
+    border-bottom :  1px solid  white ;
+}
+
+#chat_footer{
+    width: 100%;
+}
+  
+#chat_body::-webkit-scrollbar {
+      width: 3px;
+      height: 5px;
+}
+    
+  
+#chat_body::-webkit-scrollbar-track {
+      opacity: .25;
+}
+     
+  
+#chat_body::-webkit-scrollbar-thumb {
+      background:  var(--bs-blue); 
+}
+  
+#chat_body::-webkit-scrollbar-thumb:hover {
+      background:  var(--bs-blue); 
+}
+#footer:hover > h6:nth-child(2)  {
+        color:  var(--bs-blue);
+        animation-name: focusing_card;
+        animation-duration: 0.5s;
+}
+#footer > h6:nth-child(2)  {
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+}
+#footer > h6:nth-child(1) span{
+        color: white;
+        animation-name: focusing_card_out;
+        animation-duration: 0.5s;
+}
+#footer:hover > h6:nth-child(1) span{
+        color:var(--bs-blue);
+        animation-name: focusing_card;
+        animation-duration: 0.5s;
+}
+@keyframes focusing_card {
+        from {color: white;}
+        to {color:  var(--bs-blue);}
+}
+@keyframes focusing_card_out {
+        from {color:  var(--bs-blue);}
+        to {color:  white;}
+}
+a{
+        text-decoration: none;
+        color: white;
+}
+.boot-message{
+      border-radius: 25px;
+      background-color:  #212529;
+    }
+.my-message{
+      border-radius: 25px;
+      background-color:  var(--bs-blue);
+}
+
+
+#waiting_msg  > span:nth-child(1) {
+      -webkit-animation: fade-in 1s linear 1.4s infinite forwards;
+      animation: fade-in 1s linear 1.4s infinite forwards;
+}
+#waiting_msg  > span:nth-child(2) {
+      -webkit-animation: fade-in 1s linear 0.5s infinite forwards;
+      animation: fade-in 1s linear  infinite 0.5s  forwards;
+}
+#waiting_msg  > span:nth-child(3) {
+      -webkit-animation: fade-in 0.6s linear  infinite forwards;
+      animation: fade-in 0.6s linear  infinite forwards;
+}
+.fading{
+      -webkit-animation: fade-in 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
+      animation: fade-in 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
+}
+  
+@-webkit-keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+@keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .form-control:focus {
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 25px;
+      outline: 0;
+      box-shadow: none;
+    }
+    
+   .form-control {
+      border: 1px solid #fff !important;
+      color: #fff!important;
+      background-color: transparent !important;
+      outline: 0;
+      box-shadow: none;
+      border-radius: 25px ;
+    }
+    .btn-outline-primary {
+      color: #0d6efd;
+      border-color: #fff;
+      border-radius: 25px;
+    }
+  
+  .form-control{
+       border-radius: 25px; 
+  }
+  .form-control:focus{
+      border-color: #0d6efd !important;
+      box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    }
+
+    .card:hover .card-title{
+      color:var(--bs-blue);
+      animation-name: focusing_card;
+      animation-duration: 0.5s;
+  }
+  .card .card-title{
+      
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+  }
+  .card:hover{
+      animation-name: focusing_card_border;
+      animation-duration: 0.5s;
+      border:  1px solid var(--bs-blue);
+  }
+  .card{
+      background-color: #212529;
+      color: white;
+      cursor: pointer;
+      border: 1px solid white;
+      animation-name:   focusing_card_border_out;
+      animation-duration: 0.5s;
+   
+  }
+
+
+.close {
+      
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+     
+}
+.close:hover {
+      color: #0d6efd;
+      animation-name: focusing_card;
+      animation-duration: 0.5s;
+}
+.close  i {
+      font-size: 1.5em;
+}
+.close span {
+      font-size: 1.5em;
+}
+
+.modal-content {
+      background-color: #212529;
+      color: white;
+ } 
+
+
+.new_chat {
+      
+      color: white;
+      animation-name: focusing_card_out;
+      animation-duration: 0.5s;
+      cursor: pointer;
+     
+}
+.new_chat:hover {
+      color: #0d6efd;
+      animation-name: focusing_card;
+      animation-duration: 0.5s;
+}
+
+#login_btn  > span:nth-child(1) {
+      -webkit-animation: fade-in 1s linear 1.4s infinite forwards;
+      animation: fade-in 1s linear 1.4s infinite forwards;
+    }
+#login_btn  > span:nth-child(2) {
+      -webkit-animation: fade-in 1s linear 0.5s infinite forwards;
+      animation: fade-in 1s linear  infinite 0.5s  forwards;
+    }
+#login_btn  > span:nth-child(3) {
+      -webkit-animation: fade-in 0.6s linear  infinite forwards;
+      animation: fade-in 0.6s linear  infinite forwards;
+    }
+.invalid {
+      color:  red;
+      font-size: small;
+      display: none;
+  }

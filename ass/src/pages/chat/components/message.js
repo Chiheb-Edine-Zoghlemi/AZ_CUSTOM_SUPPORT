@@ -6,7 +6,7 @@ const message = (props) => {
     const msg_time =  props.info['user']  ? ' d-flex flex-row-reverse text-start ': '  ' ;
     return (
         <>
-            <div  className="d-flex flex-column">
+            <div  className="d-flex flex-column fading">
                 <div className={"d-flex "+mymsg_class} >
                   <div className={msg_colr +" p-3 text-justify"} style={{"maxWidth": "40%"}}>
                     <span>
