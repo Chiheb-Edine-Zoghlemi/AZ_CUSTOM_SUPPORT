@@ -4,7 +4,7 @@ import Message from './message';
 import Waitingmsg from './waitingmsg';
 import { useEffect,useRef } from 'react';
 const Chat = (props) => {
-  const ws = useRef(null);
+  const ws = useRef(props.chats[props.Selected_chat].ws);
   useEffect(() => {
   
     function connect() {
@@ -20,7 +20,6 @@ const Chat = (props) => {
       let new_chat = props.chats
       const data = JSON.parse(e.data);
       new_chat[props.Selected_chat].Messages = [...new_chat[props.Selected_chat].Messages, data]
-      props.setchats(new_chat);
       props.setchats(new_chat);
       setwaiting(waiting)
     }
@@ -51,8 +50,7 @@ const Chat = (props) => {
     setwaiting(!waiting)
     await sleep(3000)
     ws.current.send( JSON.stringify(new_message));
-    //setMessageCount(messageCount+1)
-    
+  
   }
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
