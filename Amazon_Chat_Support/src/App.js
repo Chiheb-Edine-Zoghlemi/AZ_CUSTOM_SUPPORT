@@ -2,12 +2,38 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import  Chat from './pages/chat/components/chat'
 import  Chatlist from './pages/chat/components/chat_list'
-//import Notfound from './pages/404/notfound';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 
 function App() {
   const [Selected_chat, setSelected_chat] = useState(null)
   const  [chats, setchats] = useState([])
+  useEffect(() => {
+    chats.forEach((element,index) => {
+      const ws = element.ws
+      ws.onopen = () => {
+        console.log(`ROOM ${index} Connected `);
+      }
+  
+      ws.onmessage = (e) => {
+        let new_chat = chats
+        const message = JSON.parse(e.data);
+        new_chat[Selected_chat].Messages = [...new_chat[Selected_chat].Messages, message]
+        new_chat[Selected_chat].active = false ; 
+       
+        setchats(new_chat);
+       
+      }
+  
+      return () => {
+        ws.onclose = () => {
+          console.log(`ROOM ${index} Disconnected `);
+        }
+      }
+      
+    });
+   
+  }, [chats,setchats,Selected_chat,setSelected_chat]);
+
 
   return (
   <Router>
@@ -43,7 +69,7 @@ function App() {
         </div>
       </div>
         <div className="row">
-        <Chatlist setSelected_chat={setSelected_chat} chats={chats} setchats={setchats} />
+        <Chatlist setSelected_chat={setSelected_chat} chats={chats} setchats={setchats}  />
         {Selected_chat != null && chats.length > 0  ? <Chat chats={chats}  setchats={setchats}  Selected_chat={Selected_chat}/> : 
         
         <div  className="col-9 fading">
@@ -66,12 +92,7 @@ function App() {
     </div>
               
           </Route>
-         
-         {/* 
-          <Route  path="*">
-            <Notfound/>
-          </Route>
-         */}
+       
         </Switch>
       
     </Router>
