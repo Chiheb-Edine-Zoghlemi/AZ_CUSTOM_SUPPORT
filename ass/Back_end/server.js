@@ -4,6 +4,9 @@ const server = require('http').createServer(app);
 const WebSocket = require('ws')
 const port=3500
 const wss = new WebSocket.Server({server:server})
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 wss.on('connection', function connection(ws) {
     let time = new Date();

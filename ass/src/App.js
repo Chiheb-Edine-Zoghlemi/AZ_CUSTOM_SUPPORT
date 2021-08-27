@@ -8,7 +8,7 @@ import { useState } from 'react';
 function App() {
   const [Selected_chat, setSelected_chat] = useState(null)
   const  [chats, setchats] = useState([])
- 
+
   return (
   <Router>
         <Switch>
@@ -44,7 +44,7 @@ function App() {
       </div>
         <div className="row">
         <Chatlist setSelected_chat={setSelected_chat} chats={chats} setchats={setchats} />
-        {Selected_chat != null && chats.length > 0  ? <Chat chats={chats}  setchats={setchats} Selected_chat={Selected_chat}/> : 
+        {Selected_chat != null && chats.length > 0  ? <Chat chats={chats}  setchats={setchats}  Selected_chat={Selected_chat}/> : 
         
         <div  className="col-9 fading">
         <div className="d-flex  h-100 justify-content-center align-items-center ">

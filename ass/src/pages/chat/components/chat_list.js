@@ -20,7 +20,7 @@ const Chatlist = (props) =>
     let is_valid = true
     e.preventDefault();
     setOpen(!open)
-    await sleep(2000)
+    await sleep(500)
     if (!validator.isEmail(email)) {
         is_valid= false; 
         $( "#email_feed_back" ).fadeIn("slow")
@@ -38,7 +38,7 @@ const Chatlist = (props) =>
     if(is_valid) {
       setemail('');
       setorder('');
-      const newchatlist = {email:email,orderid:order,Messages:[]}
+      const newchatlist = {active:false,email:email,orderid:order,Messages:[], ws : new WebSocket('ws://127.0.0.1:5000/'+props.chats.length)}
       props.setchats([...props.chats,newchatlist])
       handleClose()
       setOpen(open)
