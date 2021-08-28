@@ -7,7 +7,9 @@ import { useState , useEffect} from 'react';
 function App() {
   const [Selected_chat, setSelected_chat] = useState(null)
   const  [chats, setchats] = useState([])
+   const [MSGcount, setMSGcount] = useState(0)
   useEffect(() => {
+   
     chats.forEach((element,index) => {
       const ws = element.ws
       ws.onopen = () => {
@@ -19,8 +21,8 @@ function App() {
         const message = JSON.parse(e.data);
         new_chat[Selected_chat].Messages = [...new_chat[Selected_chat].Messages, message]
         new_chat[Selected_chat].active = false ; 
-       
         setchats(new_chat);
+        setMSGcount(MSGcount+1)
        
       }
   
@@ -32,7 +34,7 @@ function App() {
       
     });
    
-  }, [chats,setchats,Selected_chat,setSelected_chat]);
+  }, [chats,setchats,Selected_chat,setSelected_chat,MSGcount]);
 
 
   return (
@@ -70,8 +72,9 @@ function App() {
       </div>
         <div className="row">
         <Chatlist setSelected_chat={setSelected_chat} chats={chats} setchats={setchats}  />
-        {Selected_chat != null && chats.length > 0  ? <Chat chats={chats}  setchats={setchats}  Selected_chat={Selected_chat}/> : 
-        
+        {Selected_chat != null && chats.length > 0  ? 
+        <Chat chats={chats}  setchats={setchats}  Selected_chat={Selected_chat}/> 
+        : 
         <div  className="col-9 fading">
         <div className="d-flex  h-100 justify-content-center align-items-center ">
         <h1>No Chat is selected</h1>
@@ -84,7 +87,7 @@ function App() {
     <div className="container-fluid " >
         <div className="row pt-2 ">
                 <div className="col-12 text-white d-flex justify-content-between  " id='footer'>
-                    <h6 className="footer_text"> This application is created by <a href="mailto:webmaster@example.com">  <span>A</span>utomated <span>S</span>olutions <span>E</span>nterprise </a> </h6> 
+                    <h6 className="footer_text"> This application is created by <a href="mailto:webmaster@example.com">  <span>A</span>utomated <span>S</span>olutions <span>E</span>nterprises </a> </h6> 
                 <h6 >&copy;ASE </h6>
                 </div>
             </div>

@@ -2,20 +2,21 @@ import React from 'react'
 import { useState } from 'react';
 import Message from './message';
 import Waitingmsg from './waitingmsg';
-import {useRef,useEffect } from 'react';
+import {useRef } from 'react';
+import {useEffect } from 'react';
 const Chat = (props) => {
   const ws = useRef(props.chats[props.Selected_chat].ws);
-  const chats = useRef(props.chats);
+ 
 
-
+  
     useEffect( () => {
       console.log('im runing')
-       console.log( chats.current)
-       console.log( props.chats)
-    }); 
+      
+       
+    },[ props.chats]);  
   
   const send_message =  (e) => {
-    let old_chat = chats.current
+    let old_chat = props.chats
     let time = new Date();
     let curr_time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     e.preventDefault();
@@ -34,14 +35,14 @@ const Chat = (props) => {
       <div className="d-flex flex-column  align-items-center  ">
         
         <div id="chat_body" className="mt-3 overflow-auto p-4" >
-        { chats.current[props.Selected_chat].Messages.length !==0 ? chats.current[props.Selected_chat].Messages.map((m,index) => (
+        { props.chats[props.Selected_chat].Messages.length !==0 ? props.chats[props.Selected_chat].Messages.map((m,index) => (
          
         <Message   key={index} info={m} />))
           : 
           <div className=" text-center fading"> <h4>No Data Found</h4> </div>
         }
         {
-          chats.current[props.Selected_chat].active ? <Waitingmsg/> :<></>
+          props.chats[props.Selected_chat].active ? <Waitingmsg/> :<></>
         }
         </div>
         <div id="chat_footer">
