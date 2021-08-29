@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import $ from 'jquery';
 import validator from 'validator'
+import axios from "axios";
 
 const Chatlist = (props) => 
 {
@@ -12,7 +13,7 @@ const Chatlist = (props) =>
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-        
+  const [Email_error, setEmail_error] = useState('Please Provide a Valid Email Format')
   const [email, setemail] = useState("");
   const [order, setorder] = useState("")
   const [open, setOpen] = useState(true);
@@ -38,10 +39,22 @@ const Chatlist = (props) =>
     if(is_valid) {
       setemail('');
       setorder('');
-      const newchatlist = {active:false,email:email,orderid:order,Messages:[], ws : new WebSocket('ws://127.0.0.1:5000/'+props.chats.length)}
-      props.setchats([...props.chats,newchatlist])
-      handleClose()
+      /* api call  */
+      let data = {'usermail':email,'order_id':order}  
+      
+
+      axios.post('http://127.0.0.1:8000/chat', data).then((response) => {
+        console.log(response.data)
+        const newchatlist = {active:false,email:email,orderid:order,Messages:[], ws : new WebSocket('ws://127.0.0.1:5000/'+props.chats.length)}
+        props.setchats([...props.chats,newchatlist])
+        handleClose()
+      
+      }).catch((e)=>{
+        setEmail_error('This Email is Not Valid')
+        console.log('This Email is Not Valid',e)
+      });
       setOpen(open)
+    
     }else {
       setOpen(open)
     }
@@ -101,7 +114,7 @@ const delete_chat = (index) => {
                         onChange={e => setemail(e.target.value)}
                         />
                         <small id="email_feed_back" className="p-4 invalid">
-                        Please Provide a Valid Email
+                        {Email_error}
                         </small>
                         <input type="text" className="form-control form-control-lg mt-4" placeholder="Please Provide Your Order"   
                         value={order}
