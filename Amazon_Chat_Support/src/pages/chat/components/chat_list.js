@@ -24,12 +24,13 @@ const Chatlist = (props) =>
     await sleep(500)
     if (!validator.isEmail(email)) {
         is_valid= false; 
+        setEmail_error('Please Provide a Valid Email Format')
         $( "#email_feed_back" ).fadeIn("slow")
         
     }else {
       $( "#email_feed_back" ).fadeOut()
     }
-    if(!validator.isAlphanumeric(order)){
+    if(order===""){
         is_valid= false; 
         $( "#order_feed_back" ).fadeIn("slow")
        
@@ -37,23 +38,27 @@ const Chatlist = (props) =>
       $( "#order_feed_back" ).fadeOut()
     }
     if(is_valid) {
-      setemail('');
-      setorder('');
+     
       /* api call  */
       let data = {'usermail':email,'order_id':order}  
       
 
-      axios.post('http://127.0.0.1:8000/chat', data).then((response) => {
+      await axios.post('http://127.0.0.1:8000/chat', data).then((response) => {
         console.log(response.data)
-        const newchatlist = {active:false,email:email,orderid:order,Messages:[], ws : new WebSocket('ws://127.0.0.1:5000/'+props.chats.length)}
+        const newchatlist = {active:false,email:email,orderid:order,Messages:[], closed:false, ws : new WebSocket('ws://127.0.0.1:7890/'+order)}
         props.setchats([...props.chats,newchatlist])
+        setemail('');
+        setorder('');
         handleClose()
+        setOpen(open)
       
       }).catch((e)=>{
         setEmail_error('This Email is Not Valid')
-        console.log('This Email is Not Valid',e)
+        $( "#email_feed_back" ).fadeIn("slow")
+        setOpen(open)
+        
       });
-      setOpen(open)
+      
     
     }else {
       setOpen(open)

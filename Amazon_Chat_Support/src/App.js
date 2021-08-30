@@ -18,9 +18,14 @@ function App() {
   
       ws.onmessage = (e) => {
         let new_chat = chats
-        const message = JSON.parse(e.data);
+        let time = new Date();
+        let curr_time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        const message = {"msg":e.data,"time":curr_time  ,"user":true};
         new_chat[Selected_chat].Messages = [...new_chat[Selected_chat].Messages, message]
         new_chat[Selected_chat].active = false ; 
+        if (e.data ==="Chat Has Been Ended") {
+          new_chat[Selected_chat].closed = true ;
+       }
         setchats(new_chat);
         setMSGcount(MSGcount+1)
        

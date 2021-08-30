@@ -45,21 +45,27 @@ const Chat = (props) => {
           props.chats[props.Selected_chat].active ? <Waitingmsg/> :<></>
         }
         </div>
-        <div id="chat_footer">
-        <form onSubmit={e => {send_message(e)}}> 
-          <div className="input-group  p-2">
-          
-            <input type="text" className="form-control custom_message_input" disabled={props.chats[props.Selected_chat].active} placeholder="Please Provide Your Message" 
-            value={new_message}
-            onChange={e => setnew_message(e.target.value)}
-            />
-            <button className="btn btn-outline-primary" type="submit"  >
-              <i className="far fa-paper-plane"></i>
-            </button>
+        { !props.chats[props.Selected_chat].closed ?
+          <div id="chat_footer">
+          <form onSubmit={e => {send_message(e)}}> 
+            <div className="input-group  p-2">
             
+              <input type="text" className="form-control custom_message_input" disabled={props.chats[props.Selected_chat].active} placeholder="Please Provide Your Message" 
+              value={new_message}
+              onChange={e => setnew_message(e.target.value)}
+              />
+              <button className="btn btn-outline-primary" type="submit"  >
+                <i className="far fa-paper-plane"></i>
+              </button>
+              
+            </div>
+            </form>
           </div>
-          </form>
-        </div>
+          :
+          <span></span>
+
+        }
+        
       </div>
     </div>
     )
