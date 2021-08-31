@@ -20,12 +20,18 @@ function App() {
         let new_chat = chats
         let time = new Date();
         let curr_time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        const ws_order_id = e.currentTarget.url.replace('ws://127.0.0.1:7890/','')
         const message = {"msg":e.data,"time":curr_time  ,"user":true};
-        new_chat[Selected_chat].Messages = [...new_chat[Selected_chat].Messages, message]
-        new_chat[Selected_chat].active = false ; 
-        if (e.data ==="Chat Has Been Ended") {
-          new_chat[Selected_chat].closed = true ;
-       }
+        new_chat.forEach((element,index) => { 
+          if(element.orderid === ws_order_id) {
+            element.Messages = [...element.Messages, message]
+            element.active = false ; 
+          }
+          if (e.data ==="Chat Has Been Ended") {
+            element.closed = true ;
+          }
+
+        });
         setchats(new_chat);
         setMSGcount(MSGcount+1)
        
